@@ -1,0 +1,25 @@
+<header th:fragment="cabecalho" xmlns:th="http://www.thymeleaf.org">
+    <h1 class="">Meu Diario</h1>
+
+    <ul class="">
+        <li class="">
+            <a th:href="@{escrever}"><span class="">Escrever</span></a>
+        </li>
+        <li class="">
+            <a th:href="@{leitura}"><span class="">Ler</span></a>
+        </li>
+        <li class="">
+            <a th:href="@{info}"><span class="">Info</span></a>
+        </li>
+
+        <li class="">
+            <a th:href="@{config}"><span class="">Config</span></a>
+        </li>
+
+        <li class="">
+            <button class="" id="btnDarkMode">
+                <img src="../icons/dark_mode_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="" class="">
+            </button>
+        </li>
+    </ul>
+</header>
