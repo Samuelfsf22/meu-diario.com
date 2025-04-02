@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Cousine", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.cousine-regular {
+    font-family: "Cousine", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.cousine-bold {
+    font-family: "Cousine", monospace;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.cousine-regular-italic {
+    font-family: "Cousine", monospace;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.cousine-bold-italic {
+    font-family: "Cousine", monospace;
+    font-weight: 700;
+    font-style: italic;
+}
+
+:root {
+    --cor-principal-white-mode: #FFFF;
+    --cor-secundaria-white-mode: #7f1f9c;
+    --cor-terciaria-white-mode: #a16eb1;
+    --cor-principal-dark-mode: #55026e;
+    --cor-secundaria-dark-mode: #af08e2;
+    --cor-terciaria-dark-mode: #c57edb;
+}
+
+header{
+    background-color: var(--cor-principal-white-mode);
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: solid black 0.1px;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #b662cf;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+ul{
+    display: flex;
+}
+
+li{
+    width: 100px;
+    text-align: center;
+    list-style-type: none;
+    padding-left: 0;
+    
+}
+
+a{
+    text-decoration: none;
+    border-bottom: var(--cor-secundaria-white-mode);
+}
+
+span{
+    display: inline-block;
+    padding-bottom: 5px;
+    border-bottom: 3px solid var(--cor-secundaria-white-mode);
+    transition: border-bottom 0.3s ease;
+}
+
+span:hover{
+    border-bottom: 3px solid #d035ff;
+}
+
+main{
+    width: 50%;
+    min-height: 80vh;
+    border-left: solid 0.5px var(--cor-secundaria-white-mode);
+    border-right: solid 0.5px var(--cor-secundaria-white-mode);
+    margin: 0 auto;
+    box-shadow: 10px 0px 15px rgba(0, 0, 0, 0.3), -10px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+footer{
+    background-color: #bb58da;
+    width: 100%;
+    height: 120px;
+    border-top: solid black 0.1px;
+}
+
+button{
+    min-width: 10px;
+    height: 50px;
+    padding: 15px;
+    border:none;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #af08e2;
+    color: var(--cor-principal-white-mode);
+    
+}
+
+button img {
+    transition: filter 0.3s ease; /* Transição suave para o filtro */
+    width: 24px; /* Defina o tamanho do SVG, se necessário */
+    height: 24px; /* Defina o tamanho do SVG, se necessário */
+}
+
+  /* Quando o mouse passar sobre o botão, inverte a cor do SVG */
+button:hover img {
+    filter: invert(1); /* Inverte as cores do SVG */
+}
+
+button:hover{
+    transition: 0.2s;
+    transform: translateY(-2px);
+    background-color: var(--cor-secundaria-white-mode);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* DARKMODE */
+
+header.darkMode{
+    background-color: var(--cor-principal-dark-mode);
+    border-bottom: solid var(--cor-secundaria-dark-mode) 0.1px;
+}
+
+header h1.darkMode{
+    color: #FFFF;
+}
+
+body.darkMode{
+    margin: 0;
+    padding: 0;
+    background-color: #3c004e;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+li.darkMode{ 
+    width: 100px;
+    text-align: center;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+a.darkMode{
+    text-decoration: none;
+    border-bottom: var(--cor-secundaria-dark-mode);
+}
+
+span.darkMode{
+    display: inline-block;
+    padding-bottom: 5px;
+    color: #FFFF;
+    border-bottom: 3px solid var(--cor-secundaria-dark-mode);
+    transition: border-bottom 0.3s ease;
+}
+
+span:hover.darkMode{
+    border-bottom: 3px solid #e180ff;
+}
+
+main.darkMode{
+    width: 50%;
+    min-height: 80vh;
+    border-left: solid 0.5px var(--cor-secundaria-dark-mode);
+    border-right: solid 0.5px var(--cor-secundaria-dark-mode);
+    margin: 0 auto;
+    box-shadow: 10px 0px 15px #e180ff, -10px 0px 15px #e180ff;
+}
+
+footer.darkMode{
+    background-color: var(--cor-principal-dark-mode);
+    border-top: solid var(--cor-secundaria-dark-mode) 0.1px;
+}
+
+button.darkMode{
+    min-width: 10px;
+    height: 50px;
+    padding: 15px;
+    border:none;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #8301aa;
+    color: var(--cor-principal-white-mode);
+    
+}
+
+button img.darkMode{
+    transition: filter 0.3s ease; /* Transição suave para o filtro */
+    filter: invert(1); /* Inverte as cores do SVG */
+    width: 24px; /* Defina o tamanho do SVG, se necessário */
+    height: 24px; /* Defina o tamanho do SVG, se necessário */
+}
+
+  /* Quando o mouse passar sobre o botão, inverte a cor do SVG */
+button:hover img.darkMode{
+    filter: invert(0);
+}
+
+button:hover.darkMode{
+    transition: 0.2s;
+    transform: translateY(-2px);
+    background-color: var(--cor-secundaria-dark-mode);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.transicao{
+    transition: all 0.5s ease;
+}

@@ -1,0 +1,42 @@
+.divForm{
+    width: 100%;
+    min-height: 80vh;
+    background-color: rgb(155, 155, 255);
+}
+
+.divInput{
+    display: flex;
+    flex-direction: column;
+}
+
+.divInput label{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--cor-principal-white-mode);
+    font-weight: bold;
+}
+
+#campoTexto{
+    margin: 10px auto;
+    width: 95%;
+    min-height: 50px;
+    padding: 8px;
+    resize: none;
+    box-sizing: border-box;
+    overflow-y: hidden;
+}
+
+#campoTexto:disabled{
+    background-color: #f9f9f9; /* Cor de fundo alternativa */
+    color: #000000; /* Cor do texto, preto neste caso */
+    border: 1px solid #cccccc; /* Cor da borda alternativa */
+    opacity: 1; /* Opacidade para 100%, caso esteja usando opacity para desabilitado */
+}
+.divBtn{
+    display: flex;
+    justify-content: end;
+    padding-right: 30px;
+    padding-bottom: 10px;
+}

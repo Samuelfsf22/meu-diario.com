@@ -1,0 +1,38 @@
+.divInfo{
+    width: 100%;
+    min-height: 80vh;
+    background-color: rgb(155, 155, 255);
+}
+
+.divH2 h2{
+    padding-top: 10px;
+    text-align: center;
+    font-size: 2.0em;
+}
+
+.divTexto{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.divTexto p{
+    font-size: 22px;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+/* DarkMode */
+
+.divInfo.darkMode{
+    background-color: #4d3353;
+}
+
+.divH2 h2.darkMode{
+    font-size: 2.0em;
+    color: #ffff;
+}
+
+.divTexto p.darkMode{
+    font-size: 22px;
+    color: #ffff;
+}

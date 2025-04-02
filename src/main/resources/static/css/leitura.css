@@ -1,0 +1,116 @@
+/* Estilizando a tabela */
+table{
+    width: 100%;
+    border-collapse: collapse; /* Remove as bordas duplicadas */
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombras suaves */
+}
+
+/* Estilizando o cabeçalho da tabela */
+table th {
+    background-color: #8f8f8f;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.thNome{
+    width: 580px;
+}
+
+.thData{
+    width: 200px;
+    text-align: center;
+}
+
+.thButton{
+    width: 350px;
+}
+
+/* Estilizando as células da tabela */
+table td {
+    padding: 10px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.tdTitulo{
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.tdData{
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.divBtn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.divBtn button{
+    width: 100px;
+}
+
+/* Estilizando as linhas ímpares (primeira, terceira, etc.) */
+table tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Cor para as linhas ímpares */
+}
+  
+  /* Estilizando as linhas pares (segunda, quarta, etc.) */
+table tr:nth-child(even) {
+    background-color: #c9c9c9; /* Cor para as linhas pares */
+}
+/* Efeito de hover nas linhas */
+table tr:hover {
+    background-color: #ddd; /* Destaca a linha ao passar o mouse */
+}
+
+/* Estilizando as bordas */
+table th, table th td {
+    border: 1px solid #ddd;
+}
+
+/* DarkMode */
+
+table.darkMode.darkMode{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table th.darkMode {
+    background-color: #1f1f1f;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+table td.darkMode {
+    border: 1px solid #ddd;
+}
+
+tr.darkMode{
+    color: #ffff;
+}
+
+table tr:nth-child(odd).darkMode {
+    background-color: #4d3353; 
+}
+  
+
+table tr:nth-child(even).darkMode {
+    background-color: #312035;
+}
+
+table tr:hover.darkMode {
+    background-color: #ddd;
+    color: #000000;
+}
+
+table th, table th td.darkMode {
+    border: 1px solid #ddd;
+}
