@@ -1,11 +1,18 @@
 package com.proj.site.diario.controller;
 
+import com.proj.site.diario.service.FileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    FileService fileService;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -38,4 +45,16 @@ public class HomeController {
         model.addAttribute("conteudo", "fragments/config");
         return "index";
     }
+
+    @PostMapping("/enviar-dados")
+    public String enviarCaminho(@RequestParam String nomeString,@RequestParam String caminhoString, Model model){
+        System.out.println("Texto recebido: " + nomeString + " " + caminhoString);
+
+        System.out.println(fileService.mostrarCaminho());
+
+        // Após processar, você pode redirecionar para outra página ou retornar o mesmo template
+        // com um modelo atualizado
+        model.addAttribute("conteudo", "fragments/config");
+        return "index";
+    };
 }

@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="../css/escrever.css">
 </head>
 <body class="">
-    <header th:include="fragments/cabecalho :: cabecalho"></header>
+    <header th:insert="~{fragments/cabecalho :: cabecalho}"></header>
     <main id="conteudoPrincipal">
-        <div th:replace="${conteudo}">
+        <div th:replace="~{${conteudo}}">
 
         </div>
     </main>
-    <footer th:include="fragments/rodape :: rodape"></footer>
+    <footer th:insert="~{fragments/rodape :: rodape}"></footer>
     <script src="../js/sistemaDarkMode.js"></script>
-    <script src="../js/pageEscrita.js"></script>
 </body>
 </html>
