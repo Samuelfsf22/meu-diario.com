@@ -27,6 +27,12 @@ public class HomeController {
         model.addAttribute("conteudo", "fragments/escrever");
         return "index";
     }
+    @PostMapping("/escrever")
+    public String postarDiario(@RequestParam String campoTexto, Model model) {
+        fileService.escrever(campoTexto);
+        model.addAttribute("conteudo", "fragments/escrever");
+        return "index";
+    }
 
     @GetMapping("/leitura")
     public String lerPage(Model model) {
@@ -46,8 +52,8 @@ public class HomeController {
         return "index";
     }
 
-    @PostMapping("/enviar-dados")
-    public String enviarCaminho(@RequestParam String nomeString,@RequestParam String caminhoString, Model model){
+    @PostMapping("/config")
+    public String enviarConfig(@RequestParam String nomeString,@RequestParam String caminhoString, Model model){
         System.out.println("Texto recebido: " + nomeString + " " + caminhoString);
 
         System.out.println(fileService.mostrarCaminho());
