@@ -1,7 +1,29 @@
+<link rel="stylesheet" href="../css/escrever.css">
 <div class="divForm"  xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="escrever">
   <form th:action="@{/escrever}" method="post">
     <div class="divInput">
       <label>Escreva Aqui</label>
+      <div class="divTituloData">
+        <label>Titulo</label>
+        <input type="text" id="inputTitulo" name="titulo" placeholder="Insira o titulo aqui...">
+        <label>Data e Hora</label>
+        <div class="divRadio">
+          <input type="radio" id="dataHoraAutomatico" name="tipoDataHora" value="automatico" checked>
+          <label class="labelRadio">Automatico</label>
+          <input type="radio" id="dataHoraManual" name="tipoDataHora" value="manual">
+          <label class="labelRadio">Manual</label>
+        </div>
+        <div class="divDataManual sumir">
+          <label>Insira a data:</label>
+          <input type="date">
+          <div class="divHoraEMinuto">
+            <label>Hora:</label>
+            <input type="number" min="00" max="23">
+            <label>Minuto:</label>
+            <input type="number" min="00" max="59">
+          </div>
+        </div>
+      </div>
       <textarea id="campoTexto" name="campoTexto" placeholder="Digite aqui..."></textarea>
     </div>
 

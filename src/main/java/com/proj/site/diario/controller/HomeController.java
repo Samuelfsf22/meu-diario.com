@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class HomeController {
 
@@ -28,7 +30,16 @@ public class HomeController {
         return "index";
     }
     @PostMapping("/escrever")
-    public String postarDiario(@RequestParam String campoTexto, Model model) {
+    public String postarDiario(@RequestParam String titulo,
+                               @RequestParam String tipoDataHora,
+                               @RequestParam String campoTexto,
+                               Model model) {
+        System.out.println(titulo);
+        System.out.println(tipoDataHora);
+        if("automatico".equals(tipoDataHora)){
+            System.out.println(LocalDateTime.now());
+        }
+        System.out.println();
         fileService.escrever(campoTexto);
         model.addAttribute("conteudo", "fragments/escrever");
         return "index";

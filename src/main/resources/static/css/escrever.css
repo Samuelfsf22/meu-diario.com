@@ -17,6 +17,52 @@
     color: var(--cor-principal-white-mode);
 }
 
+.divTituloData{
+    display: flex;
+    flex-direction: column;
+}
+
+.divTituloData label{
+    font-size: 18px;
+    text-align: start;
+    margin-left: 22px;
+}
+
+#inputTitulo{
+    width: 300px;
+    margin-left: 22px;
+    margin-top: 10px;
+}
+
+.divRadio label{
+    margin-left: 0;
+}
+
+.divRadio input{
+    margin-left: 22px;
+    margin-top: 10px;
+}
+
+.divDataManual{
+    display: flex;
+    flex-direction: column;
+}
+
+.divDataManual input{
+    width: 100px;
+    margin-left: 22px;
+}
+
+.divHoraEMinuto{
+    display: flex;
+    flex-direction: column;
+}
+
+.divHoraEMinuto input{
+    width: 35px;
+    margin-left: 22px;
+}
+
 #campoTexto{
     margin: 10px auto;
     width: 95%;
@@ -25,6 +71,7 @@
     resize: none;
     box-sizing: border-box;
 }
+
 .divBtn{
     display: flex;
     justify-content: end;
@@ -46,7 +93,22 @@
     font-weight: bold;
 }
 
+#inputTitulo.darkMode{
+    background-color: black;
+    color: #ffff;
+}
+
+.divTituloData label.darkMode{
+    font-size: 18px;
+}
+
 #campoTexto.darkMode{
     background-color: black;
     color: #ffff;
+}
+
+/* universal */
+
+.sumir{
+    display: none;
 }
