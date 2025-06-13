@@ -1,12 +1,16 @@
 package com.proj.site.diario.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.time.LocalDateTime;
 
 @Component
 public class FileSystem {
 
+    @Autowired
+    DateSystem dateSystem;
     private String path = "C:\\Users\\Marcio\\Downloads\\ideaIC-2024.3.3.win\\projetos\\diario\\src\\main\\java\\com\\proj\\site\\diario\\arquivoTeste";
     private String fileName = "\\teste.txt";
 
@@ -39,10 +43,15 @@ public class FileSystem {
         }
     }
 
-    public void Write(String text){
+    public void Write(String title, LocalDateTime date, String text){
         criarArquivoSeNaoExistir(path + fileName);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path + fileName, true))){
             writer.write("");
+            writer.newLine();
+            writer.write("Titulo: " + title);
+            writer.newLine();
+            writer.write("Data: " + dateSystem.DateConverter(date));
+            writer.newLine();
             writer.newLine();
             writer.write(text);
             writer.newLine();

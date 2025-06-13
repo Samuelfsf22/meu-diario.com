@@ -11,3 +11,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var textarea = document.getElementById('campoTexto');
     autoResize(textarea); // Ajusta a altura quando a página carrega
 });
+
+document.getElementById('btnVoltar').addEventListener("click", () =>{
+    window.location.href = `/leitura`;
+});

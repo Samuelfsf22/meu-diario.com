@@ -10,50 +10,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td class="tdTitulo">diario</td>
-            <td class="tdData">10-10-1000</td>
-            <td class="tdBtn">
-                <div class="divBtn">
-                    <button>Ler</button>
-                    <button>Editar</button>
-                    <button>Excluir</button>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdTitulo">diario</td>
-            <td class="tdData">10-10-1000</td>
-            <td class="tdBtn">
-                <div class="divBtn">
-                    <button>Ler</button>
-                    <button>Editar</button>
-                    <button>Excluir</button>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdTitulo">diario</td>
-            <td class="tdData">10-10-1000</td>
-            <td class="tdBtn">
-                <div class="divBtn">
-                    <button>Ler</button>
-                    <button>Editar</button>
-                    <button>Excluir</button>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdTitulo">diario</td>
-            <td class="tdData">10-10-1000</td>
-            <td class="tdBtn">
-                <div class="divBtn">
-                    <button>Ler</button>
-                    <button>Editar</button>
-                    <button>Excluir</button>
-                </div>
-            </td>
-        </tr>
+            <tr th:each="registro : ${registros}">
+                <td th:text="${registro.id}"></td>
+                <td class="tdTitulo" th:text="${registro.titulo}">Título</td>
+                <td class="tdData" th:text="${registro.data}">Data</td>
+                <td class="tdBtn">
+                    <div class="divBtn">
+                        <button class="btnLer" th:attr="id=${registro.id}">Ler</button>
+                        <button>Editar</button>
+                        <button>Excluir</button>
+                    </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
+
+<script src="../js/registrosBtns.js"></script>
