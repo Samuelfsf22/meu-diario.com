@@ -46,18 +46,15 @@ public class FileSystem {
     public void Write(String title, LocalDateTime date, String text){
         criarArquivoSeNaoExistir(path + fileName);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path + fileName, true))){
-            writer.write("");
-            writer.newLine();
             writer.write("Titulo: " + title);
             writer.newLine();
             writer.write("Data: " + dateSystem.DateConverter(date));
             writer.newLine();
-            writer.newLine();
-            writer.write(text);
+            writer.write("Conteúdo: " + text);
             writer.newLine();
             writer.write("");
             writer.newLine();
-            writer.write("----------------------------------------------------------------------");
+            writer.write("------");
             writer.newLine();
             System.out.println("Conteúdo escrito no arquivo.");
         } catch (IOException e){

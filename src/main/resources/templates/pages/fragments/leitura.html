@@ -11,7 +11,6 @@
         </thead>
         <tbody>
             <tr th:each="registro : ${registros}">
-                <td th:text="${registro.id}"></td>
                 <td class="tdTitulo" th:text="${registro.titulo}">Título</td>
                 <td class="tdData" th:text="${registro.data}">Data</td>
                 <td class="tdBtn">

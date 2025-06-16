@@ -50,7 +50,7 @@ public class FileService {
         Pattern pattern = Pattern.compile(
                 "Titulo:\\s*(.*?)\\R" +
                         "Data:\\s*(.*?)\\R\\R" +
-                        "(.*)",
+                        "Conteúdo:\\s*(.*)",
                 Pattern.DOTALL
         );
 
