@@ -3,12 +3,10 @@ package com.proj.site.diario.controller;
 import com.proj.site.diario.model.Registro;
 import com.proj.site.diario.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -77,6 +75,36 @@ public class HomeController {
         }
         model.addAttribute("conteudo", "fragments/leituraPage");
         return "index";
+    }
+
+    @GetMapping("/registro/editar/{id}")
+    public String acessarRegistroParaEdit(@PathVariable int id, Model model) throws Exception {
+        try {
+            List<Registro> registros = fileService.lerRegistros();
+            Registro registro = registros.stream().filter(r -> r.getId() == id)
+                    .findFirst().orElseThrow(() -> new IllegalArgumentException("Registro não encontrado"));
+            System.out.println(registro);
+            model.addAttribute("registro", registro);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        model.addAttribute("conteudo", "fragments/editarPage");
+        return "index";
+    }
+    @PostMapping("/registro/editar/{id}")
+    public String editar(@PathVariable int id,
+                         @RequestParam String titulo,
+                         @RequestParam String campoTexto,
+                         Model model) throws Exception{
+        Registro registro = fileService.editar(id,titulo,campoTexto);
+        System.out.println(registro);
+        return "redirect:/leitura";
+    };
+    @DeleteMapping("/registro/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable int id) throws Exception {
+        fileService.apagar(id);
+
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/info")

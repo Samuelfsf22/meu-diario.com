@@ -5,6 +5,9 @@ import com.proj.site.diario.model.Registro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -68,5 +71,76 @@ public class FileService {
         }
 
         return registros;
+    };
+
+    public Registro editar(int id, String titulo, String texto) throws Exception{
+        try {
+            List<Registro> registros = lerRegistros();
+
+            System.out.println("");
+            System.out.println("Antes da edição:");
+            for(Registro reg : registros){
+                System.out.println(reg);
+            }
+            System.out.println("registros é nulo? " + (registros == null));
+            System.out.println("tamanho da lista: " + registros.size());
+            for(Registro r : registros){
+                if(r.getId() == id){
+                    r.setTitulo(titulo);
+                    r.setConteudo(texto);
+                    System.out.println(r);
+                    salvarMudanca(registros);
+                    return r;
+                }
+            }
+            System.out.println("");
+            System.out.println("Depois da edição:");
+            for(Registro reg : registros){
+                System.out.println(reg);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    public void apagar(int id) throws Exception {
+        try {
+            List<Registro> registros = lerRegistros();
+
+            System.out.println("");
+            System.out.println("Antes do delete:");
+            for(Registro reg : registros){
+                System.out.println(reg);
+            }
+            registros.removeIf(reg -> reg.getId() == id);
+            salvarMudanca(registros);
+            System.out.println("");
+            System.out.println("Depois do delete:");
+            for(Registro reg : registros){
+                System.out.println(reg);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void salvarMudanca(List<Registro> registros){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileSystem.getPath() + fileSystem.getFileName()))) {
+            for (Registro reg : registros) {
+                writer.write("Titulo: " + reg.getTitulo());
+                writer.newLine();
+                writer.write("Data: " + reg.getData());
+                writer.newLine();
+                writer.write("Conteúdo: " + reg.getConteudo());
+                writer.newLine();
+                writer.write("");
+                writer.newLine();
+                writer.write("------");
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     };
 }
