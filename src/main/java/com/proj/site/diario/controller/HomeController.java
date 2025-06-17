@@ -34,7 +34,7 @@ public class HomeController {
     public String postarDiario(@RequestParam String titulo,
                                @RequestParam String tipoDataHora,
                                @RequestParam String campoTexto,
-                               Model model) {
+                               Model model) throws Exception {
         System.out.println(titulo);
         System.out.println(tipoDataHora);
         if("automatico".equals(tipoDataHora)){

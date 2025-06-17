@@ -11,7 +11,8 @@ public class FileSystem {
 
     @Autowired
     DateSystem dateSystem;
-    private String path = "D:\\Programas\\IntelliJ IDEA Community Edition 2025.1\\projetos\\meu-diario.com\\src\\main\\java\\com\\proj\\site\\diario\\arquivoTeste";
+
+    private String path = "C:\\Users\\Marcio\\Downloads\\ideaIC-2024.3.3.win\\projetos\\diario\\src\\main\\java\\com\\proj\\site\\diario\\arquivoTeste";
     private String fileName = "\\teste.txt";
 
     public static void criarArquivoSeNaoExistir(String filePath) {
