@@ -1,6 +1,5 @@
 document.querySelectorAll(".btnLer").forEach(btn =>{
     btn.addEventListener("click", (e) =>{
-        console.log(e.target);
 
         const id = btn.id;
         window.location.href = `/registro/${id}`;
@@ -9,7 +8,6 @@ document.querySelectorAll(".btnLer").forEach(btn =>{
 
 document.querySelectorAll(".btnEditar").forEach(btn =>{
     btn.addEventListener("click", (e) =>{
-        console.log(e.target);
 
         const id = btn.id;
         window.location.href = `/registro/editar/${id}`;

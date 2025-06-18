@@ -2,14 +2,18 @@ var cooldownDoBtnDarkMode = false;
 var elementos = document.querySelectorAll('*');
 var mode;
 
+const iconI = document.querySelector(".iconeDark");
+const iconII = document.querySelector(".iconeLight");
+
 document.addEventListener('DOMContentLoaded', () =>{
-    console.log("Modo Atual = " + recuperarMode(mode));
     if(recuperarMode(mode) == 'true'){
-      console.log("entrou no if")
       mudarParaDark();
+      iconI.style.display = "none";
+      iconII.style.display = "inline";
     } else{
-      console.log("Não Entrou no if")
       mudarParaWhite();
+      iconI.style.display = "inline";
+      iconII.style.display = "none";
     }
 });
 
@@ -31,15 +35,15 @@ document.getElementById("btnDarkMode").addEventListener("click", () =>{
       if(darkmode == false){
         darkmode = true;
         mudarParaDark();
-        console.log(darkmode);
+        iconI.style.display = "none";
+        iconII.style.display = "inline";
       } else{
         darkmode = false;
         mudarParaWhite();
-        console.log(darkmode);
+        iconI.style.display = "inline";
+        iconII.style.display = "none";
       };
     }
-  
-    console.log("Modo Atual: " + recuperarMode(mode));
   };
   
   function mudarParaDark(){

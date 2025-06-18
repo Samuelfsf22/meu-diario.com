@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.proj.site.diario.config.CriptoSystem.getArquivoSenha;
+import static com.proj.site.diario.config.FileSystem.getArquivoCriptografado;
+
 @Service
 public class FileService {
 
@@ -30,20 +33,17 @@ public class FileService {
     @Autowired
     CriptoSystem criptoSystem;
 
-    private final Path arquivo = Paths.get("teste.txt");
-    private final Path chavePath = Paths.get("chave_aes.key");
-
     public void escrever(String titulo, LocalDateTime data, String texto) throws Exception {
         SecretKey chave;
-        String caminhoChave = "chave.secret";
-        File arquivoCriptografado = new File("arquivo_criptografado.txt");
+        File arquivoCriptografado = getArquivoCriptografado();
+        File arquivoSenha = getArquivoSenha();
 
         // Carrega ou gera a chave AES
-        if (Files.exists(Paths.get(caminhoChave))) {
-            chave = criptoSystem.carregarChave(caminhoChave);
+        if (arquivoSenha.exists()) {
+            chave = criptoSystem.carregarChave();
         } else {
             chave = criptoSystem.gerarChaveAES();
-            criptoSystem.salvarChave(chave, caminhoChave);
+            criptoSystem.salvarChave(chave);
         }
 
         // Monta novo conteúdo
@@ -73,28 +73,9 @@ public class FileService {
         System.out.println("Conteúdo salvo criptografado.");
     }
 
-    public void ler(){
-        fileSystem.Read();
-    };
-    public String mudarCaminho(String caminho){
-        fileSystem.pathChanger(caminho);
-        System.out.print("Caminho mudado para " + caminho);
-      return "Caminho mudado para " + caminho;
-    };
-
-    public String mudarNome(String nome){
-        fileSystem.pathChanger(nome);
-        System.out.print("Nome mudado para " + nome);
-        return "Nome mudado para " + nome;
-    }
-
-    public String mostrarCaminho(){
-        return "Caminho: " + fileSystem.getPath() + " Nome: " + fileSystem.getFileName();
-    }
-
     public List<Registro> lerRegistros() throws Exception{
-        File arquivoCriptografado = new File("arquivo_criptografado.txt");
-        SecretKey chave = criptoSystem.carregarChave("chave.secret");
+        File arquivoCriptografado = getArquivoCriptografado();
+        SecretKey chave = criptoSystem.carregarChave();
 
         String conteudo = criptoSystem.lerArquivoDescriptografado(arquivoCriptografado, chave);
         System.out.println("CONTEÚDO DO ARQUIVO DESCRIPTOGRAFADO:\n" + conteudo);
@@ -127,9 +108,6 @@ public class FileService {
     };
 
     public Registro editar(int id, String titulo, String texto) throws Exception{
-        SecretKey chave = criptoSystem.carregarChave("chave.secret");
-        File arquivo = new File("arquivo_criptografado.txt");
-
         try {
             List<Registro> registros = lerRegistros();
 
@@ -183,8 +161,8 @@ public class FileService {
 
     public void salvarMudanca(List<Registro> registros){
         try{
-            Path tempPath = Paths.get(fileSystem.getPath() + fileSystem.getFileName());
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileSystem.getPath() + fileSystem.getFileName()))) {
+            Path tempPath = Path.of("temp.txt");
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempPath.toFile()))) {
 
                 for (Registro reg : registros) {
                     writer.write("Titulo: " + reg.getTitulo());
@@ -200,8 +178,8 @@ public class FileService {
                 }
             }
             File arquivoTemporario = tempPath.toFile();
-            File arquivoCriptografado = new File("arquivo_criptografado.txt");
-            SecretKey chave = criptoSystem.carregarChave("chave.secret");
+            File arquivoCriptografado = getArquivoCriptografado();
+            SecretKey chave = criptoSystem.carregarChave();
 
             criptoSystem.criptografarArquivo(arquivoTemporario, arquivoCriptografado, chave);
 

@@ -12,11 +12,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.Base64;
+
+import static com.proj.site.diario.config.FileSystem.DIRETORIO_DIARIO;
 
 @Component
 public class CriptoSystem {
@@ -25,6 +28,17 @@ public class CriptoSystem {
 
     public CriptoSystem(DateSystem dateSystem) {
         this.dateSystem = dateSystem;
+    }
+
+    public static final Path ARQUIVO_SENHA = DIRETORIO_DIARIO.resolve("chave.secret");
+
+    public static void criarDiretorioSeNaoExistir() throws IOException {
+        Files.createDirectories(DIRETORIO_DIARIO);
+    }
+
+    public static File getArquivoSenha() throws IOException {
+        criarDiretorioSeNaoExistir();
+        return ARQUIVO_SENHA.toFile();
     }
 
     public SecretKey gerarChaveAES() throws NoSuchAlgorithmException {
@@ -53,14 +67,14 @@ public class CriptoSystem {
         Files.write(arquivoSaida.toPath(), outputBytes);
     }
 
-    public void salvarChave(SecretKey chave, String caminho) throws IOException{
+    public void salvarChave(SecretKey chave) throws IOException{
         byte[] chaveBytes = chave.getEncoded();
         String chaveBase64 = Base64.getEncoder().encodeToString(chaveBytes);
-        Files.write(Paths.get(caminho), chaveBase64.getBytes(StandardCharsets.UTF_8));
+        Files.write(getArquivoSenha().toPath(), chaveBase64.getBytes(StandardCharsets.UTF_8));
     }
 
-    public SecretKey carregarChave(String caminho) throws IOException{
-        byte[] chavesBytesBase64 = Files.readAllBytes(Paths.get(caminho));
+    public SecretKey carregarChave() throws IOException{
+        byte[] chavesBytesBase64 = Files.readAllBytes(getArquivoSenha().toPath());
         byte[] chavesBytes = Base64.getDecoder().decode(new String(chavesBytesBase64, StandardCharsets.UTF_8));
         return new SecretKeySpec(chavesBytes, 0, chavesBytes.length, "AES");
     }

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -34,14 +36,21 @@ public class HomeController {
     public String postarDiario(@RequestParam String titulo,
                                @RequestParam String tipoDataHora,
                                @RequestParam String campoTexto,
+                               @RequestParam(required = false) String dataManual,
+                               @RequestParam(required = false) String horaManual,
+                               @RequestParam(required = false) String minutoManual,
                                Model model) throws Exception {
-        System.out.println(titulo);
-        System.out.println(tipoDataHora);
         if("automatico".equals(tipoDataHora)){
-            System.out.println(LocalDateTime.now());
+            fileService.escrever(titulo, LocalDateTime.now(),campoTexto);
+        }else{
+            String horaFormatada = String.format("%02d", Integer.parseInt(horaManual));
+            String minutoFormatado = String.format("%02d", Integer.parseInt(minutoManual));
+
+            String stringDataManual = dataManual + " " + horaFormatada + ":" + minutoFormatado;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime data = LocalDateTime.parse(stringDataManual, formatter);
+            fileService.escrever(titulo, data,campoTexto);
         }
-        System.out.println();
-        fileService.escrever(titulo, LocalDateTime.now(),campoTexto);
         model.addAttribute("conteudo", "fragments/escrever");
         return "index";
     }
@@ -97,7 +106,6 @@ public class HomeController {
                          @RequestParam String campoTexto,
                          Model model) throws Exception{
         Registro registro = fileService.editar(id,titulo,campoTexto);
-        System.out.println(registro);
         return "redirect:/leitura";
     };
     @DeleteMapping("/registro/{id}")
@@ -112,22 +120,4 @@ public class HomeController {
         model.addAttribute("conteudo", "fragments/info");
         return "index";
     }
-
-    @GetMapping("/config")
-    public String configPage(Model model) {
-        model.addAttribute("conteudo", "fragments/config");
-        return "index";
-    }
-
-    @PostMapping("/config")
-    public String enviarConfig(@RequestParam String nomeString,@RequestParam String caminhoString, Model model){
-        System.out.println("Texto recebido: " + nomeString + " " + caminhoString);
-
-        System.out.println(fileService.mostrarCaminho());
-
-        // Após processar, você pode redirecionar para outra página ou retornar o mesmo template
-        // com um modelo atualizado
-        model.addAttribute("conteudo", "fragments/config");
-        return "index";
-    };
 }

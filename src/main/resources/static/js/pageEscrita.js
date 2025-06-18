@@ -14,14 +14,12 @@ const inputRadioManual = document.getElementById('dataHoraManual');
 const divDataManual = document.querySelector(".divDataManual");
 
 inputRadioAuto.addEventListener("click", (e) =>{
-    console.log(e.target.checked);
     if(e.target.checked){
         divDataManual.classList.add("sumir");
     }
 });
 
 inputRadioManual.addEventListener("click", (e) =>{
-    console.log(e.target.checked);
     if(e.target.checked){
         divDataManual.classList.remove("sumir");
     }
