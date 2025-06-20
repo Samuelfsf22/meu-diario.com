@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.proj.site</groupId>
 	<artifactId>diario</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>v1.0.0</version>
 	<name>diario</name>
 	<description>Um mini site focado em anotações de diario</description>
 	<url/>
